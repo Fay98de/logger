@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logger Test</title>
+  </head>
+  <body>
+    <script type="module">
+      import Logger from '../src/index.js'
+
+      let i = 1234567890 // int number
+      let f = 1234567890.123456789 // float number
+      let s = '1234567890' // string
+      let o = { a: 1, b: '2' } // object
+
+      let logger_desc_0 = 'Logger class'
+      let logger_desc_1 = 'Logger without any config'
+      let logger_desc_2 = 'Logger with symbol config'
+      let logger_desc_3 = 'Logger with namespace config'
+      let logger_desc_4 = 'Logger with symbol and namespace config'
+      let logger_desc_5 = 'Logger width symbol and namespace and custom color config'
+
+      let desc_logger_0 = new Logger('Logger', logger_desc_0)
+      let desc_logger_1 = new Logger('Logger', logger_desc_1)
+      let desc_logger_2 = new Logger('Logger', logger_desc_2)
+      let desc_logger_3 = new Logger('Logger', logger_desc_3)
+      let desc_logger_4 = new Logger('Logger', logger_desc_4)
+      let desc_logger_5 = new Logger('Logger', logger_desc_5)
+      let logger_1 = new Logger() // Logger without any config
+      let logger_2 = new Logger('$') // Logger with symbol config
+      let logger_3 = new Logger('logger_3') // Logger with namespace config
+      let logger_4 = new Logger('$', 'logger_4') // Logger with symbol and namespace config
+      let logger_5 = new Logger('$(#0f0)', 'logger_5(#00f)') // Logger width symbol and namespace and custom color config
+
+      desc_logger_0.info()
+      Logger.info(i, f, s, o)
+      Logger.success(i, f, s, o)
+      Logger.warn(i, f, s, o)
+      Logger.error(i, f, s, o)
+      Logger.info('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      Logger.info('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      Logger.success('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      Logger.success('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      Logger.warn('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      Logger.warn('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      Logger.error('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      Logger.error('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+
+      desc_logger_1.info()
+      logger_1.info(i, f, s, o)
+      logger_1.success(i, f, s, o)
+      logger_1.warn(i, f, s, o)
+      logger_1.error(i, f, s, o)
+      logger_1.info('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_1.info('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_1.success('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_1.success('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_1.warn('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_1.warn('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_1.error('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_1.error('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+
+      desc_logger_2.info()
+      logger_2.info(i, f, s, o)
+      logger_2.success(i, f, s, o)
+      logger_2.warn(i, f, s, o)
+      logger_2.error(i, f, s, o)
+      logger_2.info('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_2.info('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_2.success('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_2.success('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_2.warn('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_2.warn('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_2.error('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_2.error('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+
+      desc_logger_3.info()
+      logger_3.info(i, f, s, o)
+      logger_3.success(i, f, s, o)
+      logger_3.warn(i, f, s, o)
+      logger_3.error(i, f, s, o)
+      logger_3.info('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_3.info('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_3.success('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_3.success('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_3.warn('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_3.warn('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_3.error('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_3.error('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+
+      desc_logger_4.info()
+      logger_4.info(i, f, s, o)
+      logger_4.success(i, f, s, o)
+      logger_4.warn(i, f, s, o)
+      logger_4.error(i, f, s, o)
+      logger_4.info('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_4.info('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_4.success('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_4.success('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_4.warn('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_4.warn('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_4.error('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_4.error('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+
+      desc_logger_5.info()
+      logger_5.info(i, f, s, o)
+      logger_5.success(i, f, s, o)
+      logger_5.warn(i, f, s, o)
+      logger_5.error(i, f, s, o)
+      logger_5.info('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_5.info('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_5.success('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_5.success('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_5.warn('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_5.warn('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+      logger_5.error('i:%i - f:%f - s:%s - o:%o', i, f, s, o)
+      logger_5.error('d:%d - f:%f - s:%s - O:%O', i, f, s, o)
+    </script>
+  </body>
+</html>
