@@ -1,9 +1,13 @@
 {
   "name": "clearly-logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tiny but graceful logger make log on web inspectors grouped by namespace & color, easy to find and read.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
+    "start": "npm run dev",
+    "dev": "rollup -w -c rollup.config.js",
+    "build": "rollup -c rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/FLYSLOW/logger/issues"
   },
-  "homepage": "https://github.com/FLYSLOW/logger#readme"
+  "homepage": "https://github.com/FLYSLOW/logger#readme",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^5.0.2",
+    "rollup": "^2.23.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

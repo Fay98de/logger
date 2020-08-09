@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Logger Test</title>
+    <script src="../lib/index.js"></script>
   </head>
   <body>
-    <script type="module">
-      import Logger from '../src/index.js'
-
+    <script>
+      let _Logger = Logger.default
       let i = 1234567890 // int number
       let f = 1234567890.123456789 // float number
       let s = '1234567890' // string
@@ -21,17 +21,17 @@
       let logger_desc_4 = 'Logger with symbol and namespace config'
       let logger_desc_5 = 'Logger width symbol and namespace and custom color config'
 
-      let desc_logger_0 = new Logger('Logger', logger_desc_0)
-      let desc_logger_1 = new Logger('Logger', logger_desc_1)
-      let desc_logger_2 = new Logger('Logger', logger_desc_2)
-      let desc_logger_3 = new Logger('Logger', logger_desc_3)
-      let desc_logger_4 = new Logger('Logger', logger_desc_4)
-      let desc_logger_5 = new Logger('Logger', logger_desc_5)
-      let logger_1 = new Logger() // Logger without any config
-      let logger_2 = new Logger('$') // Logger with symbol config
-      let logger_3 = new Logger('logger_3') // Logger with namespace config
-      let logger_4 = new Logger('$', 'logger_4') // Logger with symbol and namespace config
-      let logger_5 = new Logger('$(#0f0)', 'logger_5(#00f)') // Logger width symbol and namespace and custom color config
+      let desc_logger_0 = new _Logger('Logger', logger_desc_0)
+      let desc_logger_1 = new _Logger('Logger', logger_desc_1)
+      let desc_logger_2 = new _Logger('Logger', logger_desc_2)
+      let desc_logger_3 = new _Logger('Logger', logger_desc_3)
+      let desc_logger_4 = new _Logger('Logger', logger_desc_4)
+      let desc_logger_5 = new _Logger('Logger', logger_desc_5)
+      let logger_1 = new _Logger() // Logger without any config
+      let logger_2 = new _Logger('$') // Logger with symbol config
+      let logger_3 = new _Logger('logger_3') // Logger with namespace config
+      let logger_4 = new _Logger('$', 'logger_4') // Logger with symbol and namespace config
+      let logger_5 = new _Logger('$(#0f0)', 'logger_5(#00f)') // Logger width symbol and namespace and custom color config
 
       desc_logger_0.info()
       Logger.info(i, f, s, o)

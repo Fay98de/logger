@@ -1,8 +1,8 @@
-const TYPE = {
-  INFO: 'Info',
-  SUCCESS: 'Success',
-  WARN: 'Warn',
-  ERROR: 'Error',
+const enum LEVEL {
+  INFO = 'Info',
+  SUCCESS = 'Success',
+  WARN = 'Warn',
+  ERROR = 'Error',
 }
 
 const STYLE = {
@@ -20,28 +20,28 @@ const STYLE = {
     border-right: 1px solid #13c2c2;
     border-bottom: 1px solid #13c2c2;
   `,
-  [TYPE.INFO]: `
+  [LEVEL.INFO]: `
     margin: 0 0 0 0;
     padding: 2px 2px 1px;
     font-size: 10px;
     color: #fff;
     background-color: #1890ff;
   `,
-  [TYPE.SUCCESS]: `
+  [LEVEL.SUCCESS]: `
     margin: 0 0 0 0;
     padding: 2px 2px 1px;
     font-size: 10px;
     color: #fff;
     background-color: #52c41a;
   `,
-  [TYPE.WARN]: `
+  [LEVEL.WARN]: `
     margin: 0 0 0 0;
     padding: 2px 2px 1px;
     font-size: 10px;
     color: #fff;
     background-color: #faad14;
   `,
-  [TYPE.ERROR]: `
+  [LEVEL.ERROR]: `
     margin: 0 0 0 0;
     padding: 2px 2px 1px;
     font-size: 10px;
@@ -61,53 +61,53 @@ let randomColor = () => {
   return color
 }
 
-let randomDarkColor = () => {
+let randomDarkColor = (): string => {
   let h = Math.floor(Math.random() * 360)
   let s = Math.floor(Math.random() * 50) + 50 // ensure saturation is gt 50%
   let l = Math.floor(Math.random() * 60) // ensure lightness is lt 60%
   return `hsl(${h}, ${s}%, ${l}%)`
 }
 
-let makeStaticArgs = (type, args = []) => {
+let makeStaticArgs = (type: LEVEL, data = []) => {
   let formatter = ''
   let styles = []
-  if (Logger.SYMBOL) {
-    formatter += `%c${Logger.SYMBOL}`
+  if (Logger.symbol) {
+    formatter += `%c${Logger.symbol}`
     styles.push(`${STYLE.SYMBOL} background-color: ${Logger.symbolColor};`)
   }
   formatter += `%c${type}%c`
   styles.push(STYLE[type], '')
-  while (SUBSTITUTION_REG.test(args[0])) {
-    formatter += ' ' + args.shift()
+  while (SUBSTITUTION_REG.test(data[0])) {
+    formatter += ' ' + data.shift()
   }
-  return [formatter, ...styles, ...args]
+  return [formatter, ...styles, ...data]
 }
 
-let makeInstanceArgs = (instance, type, args = []) => {
+let makeInstanceArgs = (instance: Logger, type: LEVEL, data = []) => {
   let formatter = instance.formatter
   let styles = instance.styles.slice()
   formatter += `%c${type}%c`
   styles.push(STYLE[type], '')
-  while (SUBSTITUTION_REG.test(args[0])) {
-    formatter += ' ' + args.shift()
+  while (SUBSTITUTION_REG.test(data[0])) {
+    formatter += ' ' + data.shift()
   }
-  return [formatter, ...styles, ...args]
+  return [formatter, ...styles, ...data]
 }
 
-export const info = (...args) => {
-  console.log.apply(console, makeStaticArgs(TYPE.INFO, args))
+export function info(...data: []) {
+  console.log.apply(console, makeStaticArgs(LEVEL.INFO, data))
 }
 
-export const success = (...args) => {
-  console.log.apply(console, makeStaticArgs(TYPE.SUCCESS, args))
+export function success(...data: []) {
+  console.log.apply(console, makeStaticArgs(LEVEL.SUCCESS, data))
 }
 
-export const warn = (...args) => {
-  console.log.apply(console, makeStaticArgs(TYPE.WARN, args))
+export function warn(...data: []) {
+  console.log.apply(console, makeStaticArgs(LEVEL.WARN, data))
 }
 
-export const error = (...args) => {
-  console.log.apply(console, makeStaticArgs(TYPE.ERROR, args))
+export function error(...data: []) {
+  console.log.apply(console, makeStaticArgs(LEVEL.ERROR, data))
 }
 
 export default class Logger {
@@ -125,7 +125,7 @@ export default class Logger {
   symbolColor = '#13c2c2'
   namespaceColor = randomDarkColor()
   formatter = ''
-  styles = []
+  styles: string[] = []
 
   constructor(symbol = '', namespace = '') {
     let symbolColorMatch = symbol.match(COLOR_REG) || []
@@ -148,19 +148,19 @@ export default class Logger {
     }
   }
 
-  info(...args) {
-    console.log.apply(console, makeInstanceArgs(this, TYPE.INFO, args))
+  info = (...data: []) => {
+    console.log.apply(console, makeInstanceArgs(this, LEVEL.INFO, data))
   }
 
-  success(...args) {
-    console.log.apply(console, makeInstanceArgs(this, TYPE.SUCCESS, args))
+  success = (...data: []) => {
+    console.log.apply(console, makeInstanceArgs(this, LEVEL.SUCCESS, data))
   }
 
-  warn(...args) {
-    console.log.apply(console, makeInstanceArgs(this, TYPE.WARN, args))
+  warn = (...data: []) => {
+    console.log.apply(console, makeInstanceArgs(this, LEVEL.WARN, data))
   }
 
-  error(...args) {
-    console.log.apply(console, makeInstanceArgs(this, TYPE.ERROR, args))
+  error = (...data: []) => {
+    console.log.apply(console, makeInstanceArgs(this, LEVEL.ERROR, data))
   }
 }
